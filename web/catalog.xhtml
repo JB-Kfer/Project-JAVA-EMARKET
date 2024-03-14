@@ -8,7 +8,17 @@
   </h:head>
   <h:body>
       <f:view>
-          ...balises correspondant a des composants JSF et balises HTML...
+          <h:dataTable value="#{catalogManager.catalog}" var="product">
+            <h:column>
+                <h:outputText value="#{product.id}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{product.name}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{product.salePrice}" />
+            </h:column>
+          </h:dataTable>
       </f:view>
   </h:body>
 </html>
