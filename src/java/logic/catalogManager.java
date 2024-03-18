@@ -14,6 +14,11 @@ public class catalogManager implements Serializable {
 
     private ArrayList<Product> catalog;
 
+    // Attributs pour la création d'un produit via le formulaire
+    private Integer productId;
+    private String productName;
+    private Double productPrice;
+
     public catalogManager() {
     }
 
@@ -25,40 +30,43 @@ public class catalogManager implements Serializable {
         catalog.add(new Product(3, "Carrot", 30.0));
     }
 
-    // Getter for the list of products
     public ArrayList<Product> getCatalog() {
         return catalog;
     }
 
-    // Setter for the list of products
     public void setCatalog(ArrayList<Product> catalog) {
         this.catalog = catalog;
     }
 
-    // Method to add a product to the catalog
-    public void createProduct(Product product) {
-        catalog.add(product);
+    public Integer getProductId() {
+        return productId;
     }
 
-    // Method to remove a product from the catalog
-    public void removeProduct(Product product) {
-        catalog.remove(product);
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    // Method to update a product in the catalog
-    public void updateProduct(Product oldProduct, Product newProduct) {
-        int index = catalog.indexOf(oldProduct);
-        if (index != -1) {
-            catalog.set(index, newProduct);
-        }
+    public String getProductName() {
+        return productName;
     }
 
-    // Method to create a new product with form field values
-    public String createProduct(Integer id, String name, Double salePrice) {
-        Product newProduct = new Product(id,name, salePrice);
-        createProduct(newProduct);
-        return "toCatalog"; // You can return a string that corresponds to the navigation rule for the successful creation of a product
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    // Méthode utilisée par le formulaire pour créer un nouveau produit
+    public String createProduct() {
+        Product newProduct = new Product(productId, productName, productPrice);
+        catalog.add(newProduct);
+        return "toCatalog"; // Assurez-vous que cela correspond au from-outcome dans faces-config.xml
     }
 
 }
-

@@ -1,24 +1,57 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
-  <h:head>
-      <link href="CSS/monstyle.css" rel="stylesheet" type="text/css" />
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="CSS/monstyle.css" rel="stylesheet" type="text/css" />
+        <title>Le Catalogue</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:commandLink action="toIndex" styleClass="logo-link">
+                <h:graphicImage value="CSS/AMAIZON.png" alt="AMAIZON Logo" styleClass="logo-image" />
+            </h:commandLink>
+        </h:form>
+        <h:form>
+            <!-- Navigation bar with buttons -->
+            <div class="navbar">
+                <h:commandLink action="toShoppingCart" styleClass="nav-button">
+                    <h:outputText value="Voir le panier" />
+                </h:commandLink>
+                <h:commandLink action="toProductCreate" styleClass="nav-button">
+                    <h:outputText value="Ajouter produit" />
+                </h:commandLink>
+            </div>
+        </h:form>
 
-      <title>Facelet Title</title>
-  </h:head>
-  <h:body>
-      <f:view>
-          <h:dataTable value="#{catalogManager.catalog}" var="product">
-            <h:column>
-                <h:outputText value="#{product.id}" />
-            </h:column>
-            <h:column>
-                <h:outputText value="#{product.name}" />
-            </h:column>
-            <h:column>
-                <h:outputText value="#{product.salePrice}" />
-            </h:column>
-          </h:dataTable>
-      </f:view>
-  </h:body>
+        <!-- Title of the page -->
+        <h1>Votre Catalogue</h1>
+
+        <!-- Product data table within a view context -->
+        <f:view>
+            <div class="container">
+                <h:dataTable value="#{catalogManager.catalog}" var="product" styleClass="product-table">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{product.id}" styleClass="product-data" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nom</f:facet>
+                        <h:outputText value="#{product.name}" styleClass="product-data" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Prix</f:facet>
+                        <h:outputText value="#{product.salePrice} €" styleClass="product-data" />
+                    </h:column>
+                    <h:column>
+                        <h:form styleClass="form">
+                            <h:commandButton value="Ajouter au panier" action="#{shoppingCartManager.addToCart}" styleClass="command-link">
+                                <f:setPropertyActionListener target="#{shoppingCartManager.prodToAdd}" value="#{product}" />
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </f:view>
+    </h:body>
 </html>

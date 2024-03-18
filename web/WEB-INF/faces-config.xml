@@ -4,6 +4,7 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
+    <!-- Navigation from the index page -->
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
@@ -14,12 +15,13 @@
             <from-outcome>toCatalog</from-outcome>
             <to-view-id>/catalog.xhtml</to-view-id>
         </navigation-case>
-         <navigation-case>
-        <from-outcome>toProductCreate</from-outcome>
-        <to-view-id>/product-create.xhtml</to-view-id>
-    </navigation-case>
+        <navigation-case>
+            <from-outcome>toProductCreate</from-outcome>
+            <to-view-id>/product-create.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
+    <!-- Navigation from the shopping cart page -->
     <navigation-rule>
         <from-view-id>/shoppingCart.xhtml</from-view-id>
         <navigation-case>
@@ -30,13 +32,43 @@
             <from-outcome>toCatalog</from-outcome>
             <to-view-id>/catalog.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>toProductCreate</from-outcome>
+            <to-view-id>/product-create.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
+
+    <!-- Navigation from the product creation page -->
     <navigation-rule>
         <from-view-id>/product-create.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>toCatalog</from-outcome>
             <to-view-id>/catalog.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>toShoppingCart</from-outcome>
+            <to-view-id>/shoppingCart.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
+    <!-- Navigation from the catalog page -->
+    <navigation-rule>
+        <from-view-id>/catalog.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>toShoppingCart</from-outcome>
+            <to-view-id>/shoppingCart.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toProductCreate</from-outcome>
+            <to-view-id>/product-create.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

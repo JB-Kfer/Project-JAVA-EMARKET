@@ -1,14 +1,50 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
-  <h:head>
-      <link href="CSS/monstyle.css" rel="stylesheet" type="text/css" />
-
-      <title>Le Panier</title>
-  </h:head>
-  <h:body>
-      <f:view>
-          ...balises correspondant a des composants JSF et balises HTML...
-      </f:view>
-  </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="CSS/monstyle.css" rel="stylesheet" type="text/css" />
+        <title>Le Panier</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:commandLink action="toIndex" styleClass="logo-link">
+                <h:graphicImage value="CSS/AMAIZON.png" alt="AMAIZON Logo" styleClass="logo-image" />
+            </h:commandLink>
+        </h:form>
+        <h:form>
+            <div class="navbar">
+                <h:commandLink action="toCatalog" styleClass="nav-button">
+                    <h:outputText value="Lien vers le catalogue" />
+                </h:commandLink>
+                <h:commandLink action="toProductCreate" styleClass="nav-button">
+                    <h:outputText value="Ajouter un nouveau produit au catalogue" />
+                </h:commandLink>
+            </div>
+            <h1>Votre Panier</h1>
+            <h:dataTable value="#{shoppingCartManager.cart}" var="item" styleClass="cart-table">
+                <h:column>
+                    <f:facet name="header">Produit</f:facet>
+                        #{item.product.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Quantité</f:facet>
+                    <h:inputText value="#{item.quantity}" size="3" styleClass="input-text" />
+                    <h:commandButton value="Editer" action="#{shoppingCartManager.updateItemQuantity(item, item.quantity)}" styleClass="command-button" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Prix Unitaire</f:facet>
+                    #{item.product.salePrice} €
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Total Produit</f:facet>
+                    #{item.quantity*item.product.salePrice} €
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Supprimer" action="#{shoppingCartManager.removeFromCart(item)}" styleClass="command-button" />
+                </h:column>
+            </h:dataTable>
+            <h:outputText value="Total : #{shoppingCartManager.getTotalPrice()} €" styleClass="total-price" />
+        </h:form>
+    </h:body>
 </html>
