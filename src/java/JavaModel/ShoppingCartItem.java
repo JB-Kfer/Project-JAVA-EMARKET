@@ -3,7 +3,6 @@ package JavaModel;
 import java.io.Serializable;
 
 public class ShoppingCartItem implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     private Integer id;
@@ -11,6 +10,7 @@ public class ShoppingCartItem implements Serializable {
     private Product product;
 
     public ShoppingCartItem() {
+        
     }
 
     public ShoppingCartItem(Integer id, Integer quantity, Product product) {
@@ -19,7 +19,6 @@ public class ShoppingCartItem implements Serializable {
         this.product = product;
     }
 
-    // Getters and Setters
     public Integer getId() {
         return id;
     }

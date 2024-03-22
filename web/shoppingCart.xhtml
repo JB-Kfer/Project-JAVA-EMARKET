@@ -21,25 +21,31 @@
                     <h:outputText value="Ajouter un nouveau produit au catalogue" />
                 </h:commandLink>
             </div>
+
             <h1>Votre Panier</h1>
+
             <h:dataTable value="#{shoppingCartManager.cart}" var="item" styleClass="cart-table">
                 <h:column>
                     <f:facet name="header">Produit</f:facet>
                         #{item.product.name}
                 </h:column>
+
                 <h:column>
                     <f:facet name="header">Quantité</f:facet>
                     <h:inputText value="#{item.quantity}" size="3" styleClass="input-text" />
                     <h:commandButton value="Editer" action="#{shoppingCartManager.updateItemQuantity(item, item.quantity)}" styleClass="command-button" />
                 </h:column>
+
                 <h:column>
                     <f:facet name="header">Prix Unitaire</f:facet>
                     #{item.product.salePrice} €
                 </h:column>
+
                 <h:column>
                     <f:facet name="header">Total Produit</f:facet>
                     #{item.quantity*item.product.salePrice} €
                 </h:column>
+
                 <h:column>
                     <h:commandButton value="Supprimer" action="#{shoppingCartManager.removeFromCart(item)}" styleClass="command-button" />
                 </h:column>

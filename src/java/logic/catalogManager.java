@@ -11,15 +11,14 @@ import jakarta.annotation.PostConstruct;
 @Named
 @ApplicationScoped
 public class catalogManager implements Serializable {
-
     private ArrayList<Product> catalog;
 
-    // Attributs pour la création d'un produit via le formulaire
     private Integer productId;
     private String productName;
     private Double productPrice;
 
     public catalogManager() {
+        
     }
 
     @PostConstruct
@@ -62,11 +61,9 @@ public class catalogManager implements Serializable {
         this.productPrice = productPrice;
     }
 
-    // Méthode utilisée par le formulaire pour créer un nouveau produit
     public String createProduct() {
         Product newProduct = new Product(productId, productName, productPrice);
         catalog.add(newProduct);
-        return "toCatalog"; // Assurez-vous que cela correspond au from-outcome dans faces-config.xml
+        return "toCatalog";
     }
-
 }

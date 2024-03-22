@@ -7,7 +7,6 @@ package JavaModel;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-
     private Integer id;
     private String name;
     private Double salePrice;
@@ -17,12 +16,11 @@ public class Product implements Serializable {
     }
     
     public Product(int id, String name, double salePrice) {
-    this.id = id;
-    this.name = name;
-    this.salePrice = salePrice;
-}
-    
-    
+        this.id = id;
+        this.name = name;
+        this.salePrice = salePrice;
+    }
+        
     public Integer getId() {
         return id;
     }

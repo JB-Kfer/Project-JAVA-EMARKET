@@ -13,7 +13,6 @@
             </h:commandLink>
         </h:form>
         <h:form>
-            <!-- Navigation bar with buttons -->
             <div class="navbar">
                 <h:commandLink action="toShoppingCart" styleClass="nav-button">
                     <h:outputText value="Voir le panier" />
@@ -24,10 +23,8 @@
             </div>
         </h:form>
 
-        <!-- Title of the page -->
         <h1>Votre Catalogue</h1>
 
-        <!-- Product data table within a view context -->
         <f:view>
             <div class="container">
                 <h:dataTable value="#{catalogManager.catalog}" var="product" styleClass="product-table">
